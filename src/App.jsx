@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "./supabase"; // supabase.js 파일 임포트
+import { supabase } from "./supabase";
 
 function App() {
   const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // 데이터 가져오기
   useEffect(() => {
     const fetchQuestions = async () => {
-      const { data, error } = await supabase
-        .from("questions") // 'questions' 테이블에서 데이터 가져오기
-        .select("*"); // 모든 컬럼을 선택
+      console.log("Fetching started");
+      const { data, error } = await supabase.from("questions").select("*");
+      console.log("Raw response:", { data, error });
 
       if (error) {
-        console.error("Error fetching questions:", error);
+        console.error("Error:", error);
+        setError(error.message);
       } else {
-        setQuestions(data); // 데이터를 state에 저장
+        console.log("Data received:", data);
+        setQuestions(data);
       }
+      setIsLoading(false);
     };
 
-    fetchQuestions(); // 컴포넌트 마운트 시 데이터 가져오기
+    fetchQuestions();
   }, []);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
@@ -27,7 +34,7 @@ function App() {
       <ul>
         {questions.map((question) => (
           <li key={question.id}>
-            {question.question_ko} - {question.question_en} - {question.question_ja}
+            {question.question_ko} - {question.question_en} - {question.question_jp}
           </li>
         ))}
       </ul>
