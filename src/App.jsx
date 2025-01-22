@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import Container from "./components/common/Layouts/container";
+import Button from "./components/common/button";
 
 function App() {
   const [questions, setQuestions] = useState([]);
