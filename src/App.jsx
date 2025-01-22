@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
+import Container from "./components/common/Layouts/container";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -29,16 +30,17 @@ function App() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
+    <Container>
       <h1>Questions</h1>
       <ul>
         {questions.map((question) => (
           <li key={question.id}>
-            {question.question_ko} - {question.question_en} - {question.question_jp}
+            {question.question_ko} - {question.question_en} -{" "}
+            {question.question_jp}
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }
 
