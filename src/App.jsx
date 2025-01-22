@@ -1,11 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
+import Container from "./components/common/Layouts/container";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
+    <Container>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </Container>
   );
 }
 
