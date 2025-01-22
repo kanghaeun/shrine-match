@@ -20,9 +20,9 @@ const Wrapper = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: 500px;
+  max-width: 460px;
   width: 100%;
-  height: 972px;
+  height: 932px;
   display: flex;
   flex-direction: column;
   justify-content: left;
