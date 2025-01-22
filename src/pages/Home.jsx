@@ -11,7 +11,7 @@ function HomePage() {
         <Dropdown />
       </DropdownWrapper>
       <HomeImg src={home_img} />
-      <Button>신사 추천받기</Button>
+      <CustomButton>신사 추천받기</CustomButton>
       <HomePattern src={home_pattern} />
     </Wrapper>
   );
@@ -29,12 +29,18 @@ const Wrapper = styled.div`
 const DropdownWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 const HomeImg = styled.img`
   width: 100%;
   margin-bottom: 50px;
+`;
+
+const CustomButton = styled(Button)`
+  height: 80px;
+  font-size: 28px;
+  width: 100%;
 `;
 
 const HomePattern = styled.img`
