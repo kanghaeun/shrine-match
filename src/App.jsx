@@ -34,7 +34,8 @@ function App() {
       <ul>
         {questions.map((question) => (
           <li key={question.id}>
-            {question.question_ko} - {question.question_en} - {question.question_jp}
+            {question.question_ko} - {question.question_en} -{" "}
+            {question.question_jp}
           </li>
         ))}
       </ul>
