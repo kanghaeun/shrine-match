@@ -25,6 +25,7 @@ function Dropdown() {
             <Option
               key={index}
               onClick={() => selectOption(option)}
+              isSelected={selectedOption === option}
               role="button"
             >
               {option}
@@ -40,14 +41,15 @@ export default Dropdown;
 
 const DropdownWrapper = styled.div`
   position: relative;
-  width: 120px;
+  width: 110px;
 `;
 
 const SelectedOption = styled.div`
   padding: 10px;
   background-color: white;
   color: ${colors.button};
-  border: 2px solid ${colors.button};
+  font-family: "Pretendard";
+  border: 3px solid ${colors.button};
   border-radius: 5px;
   cursor: pointer;
   display: flex;
@@ -61,13 +63,14 @@ const DropdownIcon = styled.img`
 
 const OptionsList = styled.ul`
   position: absolute;
-  top: 100%;
+  top: 105%;
   left: 0;
   right: 0;
   margin: 0;
   padding: 0;
   background-color: white;
-  border: 2px solid ${colors.button};
+  border: 3px solid ${colors.button};
+  font-family: "Pretendard";
   border-radius: 5px;
   list-style: none;
   z-index: 10;
@@ -79,17 +82,12 @@ const Option = styled.li`
   align-items: center;
   color: ${colors.button};
   cursor: pointer;
-  border-bottom: 1px solid ${colors.button};
+  border-bottom: 2px solid ${colors.button};
+  background-color: ${({ isSelected }) =>
+    isSelected ? colors.button : "transparent"};
+  color: ${({ isSelected }) => (isSelected ? "white" : colors.button)};
 
-  &:hover,
-  ${({ isSelected }) =>
-      isSelected &&
-      `
-    background-color: ${colors.button};
-    border-bottom: 1px solid ${colors.button};
-    color: white;
-  `}
-    &:last-child {
+  &:last-child {
     border-bottom: none;
   }
 `;
