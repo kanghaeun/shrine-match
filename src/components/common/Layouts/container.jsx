@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../styles/color";
 
 function Container({ children }) {
   return (
@@ -15,16 +16,18 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${colors.background};
 `;
 
 const Inner = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   max-width: 380px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: flex-start;
   gap: 0;
   padding: 20px;
-  background-color: #bbbbbb;
+  background-color: white;
 `;
