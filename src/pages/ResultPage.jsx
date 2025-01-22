@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Divider from "../components/common/result/Divider";
 import colors from "../styles/color";
 import KeywordList from "../components/common/results/KeyWordList";
+import KeywordDetail from "../components/common/results/KeywordDetail";
 
 const ResultPage = () => {
   return (
@@ -22,6 +23,7 @@ const ResultPage = () => {
       <KamiName className="font-pretendard">에비스</KamiName>
       <Divider theme="light" />
       <KeywordList />
+      <KeywordDetail />
     </ResultLayout>
   );
 };
