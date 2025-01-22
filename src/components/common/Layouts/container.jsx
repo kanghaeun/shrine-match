@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   justify-content: center;
   background-color: ${colors.background};
   overflow: hidden;
+  user-select: none;
 `;
 
 const Inner = styled.div`
