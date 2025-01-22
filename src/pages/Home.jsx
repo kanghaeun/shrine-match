@@ -7,6 +7,7 @@ import Dropdown from "../components/Dropdown";
 function HomePage() {
   return (
     <Wrapper>
+      <Title>너의 신사는。</Title>
       <DropdownWrapper>
         <Dropdown />
       </DropdownWrapper>
@@ -24,6 +25,19 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+`;
+
+const Title = styled.h1`
+  position: absolute;
+  top: 200px;
+  left: 51%;
+  transform: translateX(-50%);
+  z-index: 100;
+  font-size: 36px;
+  font-family: "NanumMyeongjo", serif;
+  font-weight: 700;
+  color: black;
+  text-align: center;
 `;
 
 const DropdownWrapper = styled.div`
