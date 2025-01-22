@@ -1,8 +1,10 @@
+import Container from "../components/common/Layouts/container";
+
 function HomePage() {
   return (
-    <div>
+    <Container>
       <p>homepage</p>
-    </div>
+    </Container>
   );
 }
 
