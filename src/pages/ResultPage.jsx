@@ -1,9 +1,11 @@
+import styled from "styled-components";
 import Shrine from "../../src/assets/Shrine/Asakusa.png";
 import Flower from "../assets/title_flower.png";
 import Ebisu from "../assets/Kami/Ebisu.png";
 import styled from "styled-components";
 import Divider from "../components/common/result/Divider";
 import colors from "../styles/color";
+import KeywordList from "../components/common/results/KeyWordList";
 
 const ResultPage = () => {
   return (
@@ -19,6 +21,7 @@ const ResultPage = () => {
       <KamiImg src={Ebisu} alt="Kami" />
       <KamiName className="font-pretendard">에비스</KamiName>
       <Divider theme="light" />
+      <KeywordList />
     </ResultLayout>
   );
 };
