@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Pretendard";
+  font-display: fallback;
+
+  src: url("./Pretendard-SemiBold.woff") format("woff");
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NanumMyeongjo";
+  font-display: fallback;
+  src: url("./NanumMyeongjoBold.ttf") format("ttf"),
+    url("./NanumMyeongjoExtraBold.ttf") format("ttf"),
+    url("./NanumMyeongjo.ttf") format("ttf");
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-pretendard {
+  font-family: "Pretendard";
+}
+
+body {
+  font-family: "NanumMyeongjo";
+}
