@@ -1,11 +1,14 @@
 import Shrine from "../../src/assets/Shrine/Asakusa.png";
 import styled from "styled-components";
-
+import Divider from "../components/common/result/Divider";
 const ResultPage = () => {
   return (
     <ResultLayout>
       <ShrineImg src={Shrine} alt="Shrine" />
       <DottedLine />
+      <Divider theme="light" />
+      <Divider theme="dark" />
+      <Divider theme="light" />
     </ResultLayout>
   );
 };
