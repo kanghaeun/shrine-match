@@ -1,11 +1,7 @@
 import Container from "../components/common/Layouts/container";
 
 function HomePage() {
-  return (
-    <Container>
-      <p>homepage</p>
-    </Container>
-  );
+  return <p>homepage</p>;
 }
 
 export default HomePage;
