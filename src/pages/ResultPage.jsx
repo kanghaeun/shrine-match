@@ -1,29 +1,51 @@
+import { useEffect, useState } from "react";
+import { supabase } from "../supabase";
 import styled from "styled-components";
-import Shrine from "../../src/assets/Shrine/Asakusa.png";
+import ShrineImage from "../../src/assets/Shrine/Asakusa.png";
 import Flower from "../assets/title_flower.png";
-import Ebisu from "../assets/Kami/Ebisu.png";
+import KamiImage from "../assets/Kami/Ebisu.png";
 import Divider from "../components/common/results/Divider";
-import colors from "../styles/color";
-import KeywordList from "../components/common/results/KeyWordList";
+import KeywordList from "../components/common/results/KeywordList";
 import KeywordDetail from "../components/common/results/KeywordDetail";
+import colors from "../styles/color";
 
 const ResultPage = () => {
+  const [resultData, setResultData] = useState(null);
+
+  useEffect(() => {
+    const fetchResultData = async () => {
+      try {
+        const { data, error } = await supabase.from("results").select("*").eq("id", 1).single();
+
+        if (error) throw error;
+
+        setResultData(data);
+      } catch (error) {
+        console.error("결과 데이터를 가져오는 중 오류가 발생했습니다:", error.message);
+      }
+    };
+
+    fetchResultData();
+  }, []);
+
+  if (!resultData) return <div>로딩 중...</div>;
+
   return (
     <ResultLayout>
-      <ShrineImg src={Shrine} alt="Shrine" />
+      <ShrineImg src={resultData.shrine_image_url || ShrineImage} alt="Shrine" />
       <DottedLine />
       <Divider theme="light" />
       <FlowerContainer>
         <FlowerImg src={Flower} alt="Flower" />
-        <FlowerText className="font-pretendard">아사쿠사 신사</FlowerText>
+        <FlowerText className="font-pretendard">{resultData.result_name_ko}</FlowerText>
       </FlowerContainer>
       <Divider theme="dark" />
-      <KamiImg src={Ebisu} alt="Kami" />
-      <KamiName className="font-pretendard">에비스</KamiName>
+      <KamiImg src={resultData.kami_image_url || KamiImage} alt="Kami" />
+      <KamiName className="font-pretendard">{resultData.kami_name_ko}</KamiName>
       <Divider theme="light" />
-      <KeywordList />
+      <KeywordList hashtags={resultData.hashtag_ko.split(",")} />
       <Divider theme="dark" />
-      <KeywordDetail />
+      <KeywordDetail description={resultData.description_ko} />
       <Divider theme="dark" />
     </ResultLayout>
   );
@@ -40,6 +62,10 @@ const ResultLayout = styled.div`
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ShrineImg = styled.img`
@@ -68,6 +94,7 @@ const KamiImg = styled.img`
   object-fit: contain;
   margin-top: 30px;
 `;
+
 const FlowerText = styled.div`
   font-size: 32px;
   font-weight: bold;

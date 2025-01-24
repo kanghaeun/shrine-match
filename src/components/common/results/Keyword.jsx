@@ -6,7 +6,7 @@ const Keyword = () => {
   return (
     <KeywordLayout>
       <TagLuckImg src={tagLuck} alt="tag_luck" />
-      <VerticalText class="font-pretendard">오미쿠지100엔</VerticalText>{" "}
+      <VerticalText className="font-pretendard">오미쿠지100엔</VerticalText>{" "}
     </KeywordLayout>
   );
 };
