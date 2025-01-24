@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Shrine from "../../src/assets/Shrine/Asakusa.png";
 import Flower from "../assets/title_flower.png";
 import Ebisu from "../assets/Kami/Ebisu.png";
-import Divider from "../components/common/result/Divider";
+import Divider from "../components/common/results/Divider";
 import colors from "../styles/color";
 import KeywordList from "../components/common/results/KeyWordList";
 import KeywordDetail from "../components/common/results/KeywordDetail";
