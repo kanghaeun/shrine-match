@@ -14,7 +14,7 @@ function HomePage() {
       button: "나의 신사 찾기",
     },
     English: {
-      title: "Spirited, Away。",
+      title: "Spirited, a Way。",
       button: "Finding My Shrine",
     },
     日本語: {
