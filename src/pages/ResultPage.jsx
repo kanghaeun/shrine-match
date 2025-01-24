@@ -15,11 +15,7 @@ const ResultPage = () => {
   useEffect(() => {
     const fetchResultData = async () => {
       try {
-        const { data, error } = await supabase
-          .from("results")
-          .select("*")
-          .eq("id", 1) // 필요한 ID로 수정 가능
-          .single();
+        const { data, error } = await supabase.from("results").select("*").eq("id", 1).single();
 
         if (error) throw error;
 
