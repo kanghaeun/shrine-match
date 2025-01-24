@@ -40,13 +40,6 @@ const ResultLayout = styled.div`
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  overscroll-behavior-y: contain;
-  scroll-behavior: smooth;
-  padding-bottom: 50px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const ShrineImg = styled.img`

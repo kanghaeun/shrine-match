@@ -30,5 +30,6 @@ const Inner = styled.div`
   gap: 0;
   padding: 20px;
   background-color: white;
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
 `;
