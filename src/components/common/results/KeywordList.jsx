@@ -20,5 +20,5 @@ const KeywordListContainer = styled.div`
   flex-direction: row;
   gap: 50px;
   align-items: flex-start;
-  padding: 20px 0;
+  padding: 25px 0 30px;
 `;
