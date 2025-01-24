@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import colors from "../../styles/color";
 
-function Button({ children, ...props }) {
-  return(
-    <StyledButton {...props}>{children}</StyledButton>
+function Button({ children, className, ...props }) {
+  return (
+    <StyledButton className={className} {...props}>
+      {children}
+    </StyledButton>
   );
 }
 
@@ -19,5 +21,5 @@ const StyledButton = styled.button`
   color: white;
   margin: 5px auto;
   font-weight: bold;
-  font-size: 1rem;
+  cursor: pointer;
 `;
