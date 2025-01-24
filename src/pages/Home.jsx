@@ -1,12 +1,12 @@
-import { useState } from "react";
 import styled from "styled-components";
 import home_img from "../assets/home_main.png";
 import home_pattern from "../assets/home_pattern.png";
 import Button from "../components/common/Button";
 import Dropdown from "../components/Dropdown";
+import { useLanguage } from "../hooks/useLanguage";
 
 function HomePage() {
-  const [language, setLanguage] = useState("한국어");
+  const { language } = useLanguage();
 
   const texts = {
     한국어: {
@@ -27,7 +27,7 @@ function HomePage() {
     <Wrapper>
       <Title>{texts[language].title}</Title>
       <DropdownWrapper>
-        <Dropdown language={language} setLanguage={setLanguage} />
+        <Dropdown />
       </DropdownWrapper>
       <HomeImg src={home_img} />
       <CustomButton>{texts[language].button}</CustomButton>

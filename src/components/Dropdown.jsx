@@ -2,9 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import colors from "../styles/color";
 import arrow_down from "../assets/arrow_down.png";
+import { useLanguage } from "../hooks/useLanguage";
 
-function Dropdown({ language, setLanguage }) {
+function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const selectOption = (option) => {
