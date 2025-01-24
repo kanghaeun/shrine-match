@@ -16,13 +16,12 @@ const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   background-color: ${colors.background};
   overflow: hidden;
 `;
 
 const Inner = styled.div`
-  max-width: 460px;
+  width: 460px;
   display: flex;
   flex-direction: column;
   justify-content: left;
