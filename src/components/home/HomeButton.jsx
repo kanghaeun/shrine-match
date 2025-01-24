@@ -33,7 +33,7 @@ function HomeButton({ language, text }) {
 
       const { data: fetchedAnswers, error: answerError } = await supabase
         .from("answers")
-        .select(`id, ${answerColumn}`);
+        .select(`id, question_id, ${answerColumn}`);
 
       if (answerError) throw answerError;
 
