@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Shrine from "../../src/assets/Shrine/Asakusa.png";
 import Flower from "../assets/title_flower.png";
 import Ebisu from "../assets/Kami/Ebisu.png";
-import styled from "styled-components";
 import Divider from "../components/common/result/Divider";
 import colors from "../styles/color";
 import KeywordList from "../components/common/results/KeyWordList";
@@ -23,7 +22,9 @@ const ResultPage = () => {
       <KamiName className="font-pretendard">에비스</KamiName>
       <Divider theme="light" />
       <KeywordList />
+      <Divider theme="dark" />
       <KeywordDetail />
+      <Divider theme="dark" />
     </ResultLayout>
   );
 };
@@ -37,6 +38,15 @@ const ResultLayout = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  padding-bottom: 50px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ShrineImg = styled.img`
@@ -47,10 +57,10 @@ const ShrineImg = styled.img`
 
 const FlowerContainer = styled.div`
   display: flex;
-  align-items: center; /* 세로로 가운데 정렬 */
-  justify-content: center; /* 가로로 가운데 정렬 */
-  gap: 10px; /* 이미지와 텍스트 사이 간격 */
-  margin: 20px 0; /* 상하 간격 */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
 `;
 
 const FlowerImg = styled.img`
