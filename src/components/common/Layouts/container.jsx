@@ -13,16 +13,16 @@ export default Container;
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${colors.background};
+  overflow: hidden;
 `;
 
 const Inner = styled.div`
   max-width: 460px;
-  width: 100%;
-  height: 932px;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -30,4 +30,5 @@ const Inner = styled.div`
   gap: 0;
   padding: 20px;
   background-color: white;
+  overflow: hidden;
 `;
