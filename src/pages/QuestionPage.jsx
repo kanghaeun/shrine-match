@@ -6,14 +6,21 @@ import { useParams } from "react-router-dom";
 
 function QuestionPage() {
   const { id } = useParams;
-  
-  return(
+
+  return (
     <QuestionLayout>
       <BackgroundImg src={question_background} alt="Background" />
-      <QuestionContent/>
-      <ChoiceButtons/>
+      <QuestionContent />
+      <ChoiceButtons />
+      <ChoiceButtons />
+      <ChoiceButtons />
+      <ChoiceButtons />
+      <ChoiceButtons />
+      <ChoiceButtons />
+      <ChoiceButtons />
+      <ChoiceButtons />
     </QuestionLayout>
-  )
+  );
 }
 
 export default QuestionPage;
@@ -31,5 +38,5 @@ const BackgroundImg = styled.img`
   width: 100%;
   height: auto;
   object-fit: contain;
-  margin-bottom: 8vh
+  margin-bottom: 8vh;
 `;
