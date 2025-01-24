@@ -1,51 +1,71 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 import styled from "styled-components";
-import ShrineImage from "../../src/assets/Shrine/Asakusa.png";
 import Flower from "../assets/title_flower.png";
-import KamiImage from "../assets/Kami/Ebisu.png";
 import Divider from "../components/common/results/Divider";
 import KeywordList from "../components/common/results/KeywordList";
 import KeywordDetail from "../components/common/results/KeywordDetail";
 import colors from "../styles/color";
+import { useLanguage } from "../hooks/useLanguage";
 
 const ResultPage = () => {
   const [resultData, setResultData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // const { language } = useLanguage();
+  const language = "한국어"; // 전역상태변수 사용 불가로 인한 임시 상수 데이터
 
   useEffect(() => {
     const fetchResultData = async () => {
       try {
         const { data, error } = await supabase.from("results").select("*").eq("id", 1).single();
-
         if (error) throw error;
-
         setResultData(data);
       } catch (error) {
-        console.error("결과 데이터를 가져오는 중 오류가 발생했습니다:", error.message);
+        setError("결과 데이터를 가져오는 데 실패했습니다.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchResultData();
   }, []);
 
-  if (!resultData) return <div>로딩 중...</div>;
+  if (loading) return <div>로딩 중...</div>;
+  if (error) return <div>{error}</div>;
+
+  const shrineImageUrl = resultData.shrine_image_name
+    ? new URL(`../assets/Shrine/${resultData.shrine_image_name}.png`, import.meta.url).href
+    : null;
+
+  const kamiImageUrl = resultData.kami_image_name
+    ? new URL(`../assets/Kami/${resultData.kami_image_name}.png`, import.meta.url).href
+    : null;
+
+  const hashtags = resultData[`hashtag_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`]
+    ? resultData[`hashtag_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`].split(",")
+    : [];
+  const description = resultData[`description_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`];
+
+  const resultName = resultData[`result_name_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`];
+  const kamiName = resultData[`kami_name_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`];
 
   return (
     <ResultLayout>
-      <ShrineImg src={resultData.shrine_image_url || ShrineImage} alt="Shrine" />
+      <ShrineImg src={shrineImageUrl} alt="Shrine" />
       <DottedLine />
       <Divider theme="light" />
       <FlowerContainer>
         <FlowerImg src={Flower} alt="Flower" />
-        <FlowerText className="font-pretendard">{resultData.result_name_ko}</FlowerText>
+        <FlowerText className="font-pretendard">{resultName}</FlowerText>
       </FlowerContainer>
       <Divider theme="dark" />
-      <KamiImg src={resultData.kami_image_url || KamiImage} alt="Kami" />
-      <KamiName className="font-pretendard">{resultData.kami_name_ko}</KamiName>
+      <KamiImg src={kamiImageUrl} alt="Kami" />
+      <KamiName className="font-pretendard">{kamiName}</KamiName>
       <Divider theme="light" />
-      <KeywordList hashtags={resultData.hashtag_ko.split(",")} />
+      <KeywordList keywords={hashtags} />
       <Divider theme="dark" />
-      <KeywordDetail description={resultData.description_ko} />
+      <KeywordDetail description={description} />
       <Divider theme="dark" />
     </ResultLayout>
   );
