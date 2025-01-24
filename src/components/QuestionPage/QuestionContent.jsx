@@ -13,15 +13,16 @@ function QuestionContent({ question }){
 export default QuestionContent;
 
 const StyledQuestion = styled.div`
-  position: absolute;
+  position: relative;
+  height: 0px;
   text-align: center;
   max-width: 350px;
   width: auto;
+  bottom: 415px;
   z-index: 10;
   font-size: 20px;
   font-weight: bold;
   font-family: "NanumMyeongjo", serif;
-  top: 30%;
   line-height: 1.3;
   word-break: keep-all;
   color: ${colors.secondary};
