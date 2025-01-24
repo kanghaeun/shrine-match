@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import Keyword from "./Keyword";
 
-const KeywordList = () => {
-  const keywords = Array(5).fill(null);
-
+const KeywordList = ({ keywords }) => {
   return (
     <KeywordListContainer>
-      {keywords.map((_, index) => (
-        <Keyword key={index} />
+      {keywords.map((keyword, index) => (
+        <Keyword key={index} text={keyword} />
       ))}
     </KeywordListContainer>
   );

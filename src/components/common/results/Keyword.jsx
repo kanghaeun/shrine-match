@@ -2,11 +2,11 @@ import styled from "styled-components";
 import tagLuck from "../../../assets/tag_luck.png";
 import colors from "../../../styles/color";
 
-const Keyword = () => {
+const Keyword = ({ text }) => {
   return (
     <KeywordLayout>
       <TagLuckImg src={tagLuck} alt="tag_luck" />
-      <VerticalText className="font-pretendard">오미쿠지100엔</VerticalText>{" "}
+      <VerticalText className="font-pretendard">{text}</VerticalText>
     </KeywordLayout>
   );
 };
@@ -31,6 +31,6 @@ const VerticalText = styled.div`
   writing-mode: vertical-rl;
   text-orientation: upright;
   margin-top: 10px;
-  letter-spacing: 5px;
-  font-size: 18px;
+  letter-spacing: 1px;
+  font-size: 22px;
 `;
