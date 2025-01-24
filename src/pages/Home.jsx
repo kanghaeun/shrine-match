@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import home_img from "../assets/home_main.png";
 import home_pattern from "../assets/home_pattern.png";
@@ -5,14 +6,31 @@ import Button from "../components/common/Button";
 import Dropdown from "../components/Dropdown";
 
 function HomePage() {
+  const [language, setLanguage] = useState("한국어");
+
+  const texts = {
+    한국어: {
+      title: "너의 신사는。",
+      button: "나의 신사 찾기",
+    },
+    English: {
+      title: "Spirited, Away。",
+      button: "Finding My Shrine",
+    },
+    日本語: {
+      title: "君の神社は。",
+      button: "私の神社を探す",
+    },
+  };
+
   return (
     <Wrapper>
-      <Title>너의 신사는。</Title>
+      <Title>{texts[language].title}</Title>
       <DropdownWrapper>
-        <Dropdown />
+        <Dropdown language={language} setLanguage={setLanguage} />
       </DropdownWrapper>
       <HomeImg src={home_img} />
-      <CustomButton>신사 추천받기</CustomButton>
+      <CustomButton>{texts[language].button}</CustomButton>
       <HomePattern src={home_pattern} />
     </Wrapper>
   );

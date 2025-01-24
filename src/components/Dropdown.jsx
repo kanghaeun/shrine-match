@@ -3,20 +3,19 @@ import styled from "styled-components";
 import colors from "../styles/color";
 import arrow_down from "../assets/arrow_down.png";
 
-function Dropdown() {
+function Dropdown({ language, setLanguage }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("한국어");
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const selectOption = (option) => {
-    setSelectedOption(option);
+    setLanguage(option);
     setIsOpen(false);
   };
 
   return (
     <DropdownWrapper>
       <SelectedOption onClick={toggleDropdown}>
-        {selectedOption}
+        {language}
         <DropdownIcon src={arrow_down} alt="dropdown" />
       </SelectedOption>
       {isOpen && (
@@ -25,7 +24,7 @@ function Dropdown() {
             <Option
               key={index}
               onClick={() => selectOption(option)}
-              isSelected={selectedOption === option}
+              isSelected={language === option}
               role="button"
             >
               {option}
