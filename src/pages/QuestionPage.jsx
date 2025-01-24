@@ -2,8 +2,11 @@ import styled from "styled-components";
 import question_background from "../assets/question_background.png";
 import QuestionContent from "../components/QuestionPage/QuestionContent";
 import ChoiceButtons from "../components/QuestionPage/ChoiceButtons";
+import { useParams } from "react-router-dom";
 
 function QuestionPage() {
+  const { id } = useParams;
+  
   return(
     <QuestionLayout>
       <BackgroundImg src={question_background} alt="Background" />
