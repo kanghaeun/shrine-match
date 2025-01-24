@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import colors from "../styles/color";
-import arrow_down from "../assets/arrow_down.png";
-import { useLanguage } from "../hooks/useLanguage";
+import colors from "../../styles/color";
+import arrow_down from "../../assets/arrow_down.png";
+import { useLanguage } from "../../hooks/useLanguage";
 
 function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +16,12 @@ function Dropdown() {
 
   return (
     <DropdownWrapper>
-      <SelectedOption onClick={toggleDropdown}>
+      <SelectedOption className="font-pretendard" onClick={toggleDropdown}>
         {language}
         <DropdownIcon src={arrow_down} alt="dropdown" />
       </SelectedOption>
       {isOpen && (
-        <OptionsList>
+        <OptionsList className="font-pretendard">
           {["한국어", "English", "日本語"].map((option, index) => (
             <Option
               key={index}
@@ -49,7 +49,6 @@ const SelectedOption = styled.div`
   padding: 10px;
   background-color: white;
   color: ${colors.button};
-  font-family: "Pretendard";
   border: 3px solid ${colors.button};
   border-radius: 5px;
   cursor: pointer;
@@ -71,7 +70,6 @@ const OptionsList = styled.ul`
   padding: 0;
   background-color: white;
   border: 3px solid ${colors.button};
-  font-family: "Pretendard";
   border-radius: 5px;
   list-style: none;
   z-index: 10;

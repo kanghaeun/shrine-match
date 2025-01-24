@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import home_img from "../assets/home_main.png";
 import home_pattern from "../assets/home_pattern.png";
-import Dropdown from "../components/Dropdown";
-import HomeButton from "../components/HomeButton";
+import Dropdown from "../components/home/Dropdown";
+import HomeButton from "../components/home/HomeButton";
 import { useLanguage } from "../hooks/useLanguage";
 
 function HomePage() {

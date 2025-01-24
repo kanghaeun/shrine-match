@@ -1,8 +1,14 @@
-import { supabase } from "../supabase";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../../supabase";
 import styled from "styled-components";
-import Button from "./common/Button";
+import Button from "../common/Button";
 
 function HomeButton({ language, text }) {
+  const [questionsData, setQuestionsData] = useState([]);
+  const [answersData, setAnswersData] = useState([]);
+  const navigate = useNavigate();
+
   const fetchData = async () => {
     try {
       const questionColumn =
@@ -31,8 +37,12 @@ function HomeButton({ language, text }) {
 
       if (answerError) throw answerError;
 
-      console.log("Fetched Questions:", fetchedQuestions);
-      console.log("Fetched Answers:", fetchedAnswers);
+      setQuestionsData(fetchedQuestions);
+      setAnswersData(fetchedAnswers);
+
+      navigate("/question/1", {
+        state: { questions: fetchedQuestions, answers: fetchedAnswers },
+      });
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
