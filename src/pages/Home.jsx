@@ -46,10 +46,11 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  position: absolute;
-  top: 200px;
+  position: relative;
+  height: 0px;
+  top: 180px;
   left: 51%;
-  transform: translateX(-50%);
+  transform: translateX(-48%);
   z-index: 100;
   font-size: 36px;
   font-family: "NanumMyeongjo", serif;
@@ -71,5 +72,5 @@ const HomeImg = styled.img`
 
 const HomePattern = styled.img`
   width: calc(100% + 40px);
-  margin: auto -20px -20px;
+  margin: 30px -20px 0px -20px;
 `;
