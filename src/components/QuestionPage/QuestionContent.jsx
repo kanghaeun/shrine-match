@@ -15,13 +15,15 @@ export default QuestionContent;
 const StyledQuestion = styled.div`
   position: absolute;
   text-align: center;
-  max-width: 360px;
+  max-width: 350px;
   width: auto;
   z-index: 10;
-  font-size: 1.2em;
+  font-size: 20px;
   font-weight: bold;
   font-family: "NanumMyeongjo", serif;
-  top: 14rem;
+  top: 30%;
+  line-height: 1.3;
+  word-break: keep-all;
   color: ${colors.secondary};
 
   & > div {
