@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
-const KeywordDetail = () => {
+const KeywordDetail = ({ description }) => {
   return (
     <KeywordDetailLayout>
-      <KeywordDetailText>
-        아사쿠사 신사는 도쿄에 위치해 있으며 규모가 큰 신사이다.아사쿠사 신사는
-        도쿄에 위치해 있으며 규모가 큰 신사이다.아사쿠사 신사는 도쿄에 위치해
-        있으며 규모가 큰 신사이다.
-      </KeywordDetailText>
+      <KeywordDetailText>{description}</KeywordDetailText>
     </KeywordDetailLayout>
   );
 };
