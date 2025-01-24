@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import home_img from "../assets/home_main.png";
 import home_pattern from "../assets/home_pattern.png";
-import Button from "../components/common/Button";
 import Dropdown from "../components/Dropdown";
+import HomeButton from "../components/HomeButton";
 import { useLanguage } from "../hooks/useLanguage";
 
 function HomePage() {
@@ -30,7 +30,7 @@ function HomePage() {
         <Dropdown />
       </DropdownWrapper>
       <HomeImg src={home_img} />
-      <CustomButton>{texts[language].button}</CustomButton>
+      <HomeButton language={language} text={texts[language].button} />
       <HomePattern src={home_pattern} />
     </Wrapper>
   );
@@ -67,12 +67,6 @@ const DropdownWrapper = styled.div`
 const HomeImg = styled.img`
   width: 100%;
   margin-bottom: 50px;
-`;
-
-const CustomButton = styled(Button)`
-  height: 80px;
-  font-size: 28px;
-  width: 100%;
 `;
 
 const HomePattern = styled.img`
