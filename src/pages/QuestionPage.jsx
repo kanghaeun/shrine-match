@@ -2,22 +2,61 @@ import styled from "styled-components";
 import question_background from "../assets/question_background.png";
 import QuestionContent from "../components/QuestionPage/QuestionContent";
 import ChoiceButtons from "../components/QuestionPage/ChoiceButtons";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useLanguage } from "../hooks/useLanguage";
 
-function QuestionPage({ state }) {
+function QuestionPage() {
   const location = useLocation();
-  const { questions, answers } = location.state || {};
-  console.log("질문", questions);
-  console.log("답변", answers);
-  const { id } = useParams();
+  const navigate = useNavigate();
+  const { language } = useLanguage();
+  const { questions, answers, currentQuestionIndex, selectedAnswers } = location.state || {};
+
+  const currentQuestion = questions?.[currentQuestionIndex];
+  const currentAnswers = answers?.filter((answer) => answer.question_id === currentQuestion?.id);
+
+  const handleAnswerSelect = (answerId) => {
+    const newSelectedAnswers = [...selectedAnswers, answerId];
+
+    if (currentQuestionIndex < questions.length - 1) {
+      navigate(`/question/${currentQuestionIndex + 2}`, {
+        state: {
+          questions,
+          answers,
+          currentQuestionIndex: currentQuestionIndex + 1,
+          selectedAnswers: newSelectedAnswers,
+        },
+      });
+    } else {
+      navigate("/result", {
+        state: { selectedAnswers: newSelectedAnswers },
+      });
+    }
+  };
+
+  if (!questions || !answers) {
+    return <div>로딩 중...</div>;
+  }
+
+  const questionColumn = `question_${language === "한국어" ? "ko" : language === "English" ? "en" : "jp"}`;
+  const answerColumn = `answer_${language === "한국어" ? "ko" : language === "English" ? "en" : "jp"}`;
 
   return (
     <QuestionLayout>
       <BackgroundImg src={question_background} alt="Background" />
-
-      <QuestionContent />
-      <ChoiceButtons />
-      <ChoiceButtons />
+      <QuestionContent
+        questionNumber={currentQuestionIndex + 1}
+        totalQuestions={questions.length}
+        questionText={currentQuestion[questionColumn]}
+      />
+      <ChoiceButtonsContainer>
+        {currentAnswers.map((answer) => (
+          <ChoiceButtons
+            key={answer.id}
+            choiceText={answer[answerColumn]}
+            onSelect={() => handleAnswerSelect(answer.id)}
+          />
+        ))}
+      </ChoiceButtonsContainer>
     </QuestionLayout>
   );
 }
@@ -37,5 +76,13 @@ const BackgroundImg = styled.img`
   width: 100%;
   height: auto;
   object-fit: contain;
-  margin-bottom: 8vh;
+  margin-bottom: 4vh;
+`;
+
+const ChoiceButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0 20px;
 `;
