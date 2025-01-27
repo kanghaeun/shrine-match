@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import colors from "../../styles/color";
+import { useLocation } from "react-router-dom";
 
-function QuestionContent({ question }){
-    return (
-        <StyledQuestion>
-            <div> 1 / 5 </div>
-            <div> 여행 중 발견한 오래된 지도에 신사로 가는 네 개의 경로가 표시되어 있다. 어떤 길을 선택할까? </div>
-        </StyledQuestion>
-    );
+function QuestionContent() {
+  return (
+    <StyledQuestion>
+      <div> 1 / 5 </div>
+      <div>d</div>
+    </StyledQuestion>
+  );
 }
 
 export default QuestionContent;
