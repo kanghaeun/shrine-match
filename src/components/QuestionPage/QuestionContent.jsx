@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import colors from "../../styles/color";
-import { useLocation } from "react-router-dom";
 
-function QuestionContent() {
+function QuestionContent({ questionNumber, totalQuestions, questionText }) {
   return (
     <StyledQuestion>
-      <div> 1 / 5 </div>
-      <div>d</div>
+      <div>
+        {questionNumber} / {totalQuestions}
+      </div>
+      <div>{questionText}</div>
     </StyledQuestion>
   );
 }

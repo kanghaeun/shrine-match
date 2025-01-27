@@ -14,12 +14,15 @@ export default Button;
 const StyledButton = styled.button`
   border: none;
   border-radius: 15px;
-  width: 95%;
-  padding: 10px;
+  width: 470px;
+  height: 80px;
+  padding: 15px 20px;
   font-family: "NanumMyeongjo", serif;
   background-color: ${colors.button};
   color: white;
-  margin: 5px auto;
+  margin: 5px -5px;
+  line-height: 1.3;
+  justify-content: center;
   font-weight: bold;
   cursor: pointer;
 `;

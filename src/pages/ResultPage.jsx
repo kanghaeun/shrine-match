@@ -7,18 +7,22 @@ import KeywordList from "../components/common/results/KeywordList";
 import KeywordDetail from "../components/common/results/KeywordDetail";
 import colors from "../styles/color";
 import { useLanguage } from "../hooks/useLanguage";
+import { useLocation } from "react-router-dom";
 
 const ResultPage = () => {
   const [resultData, setResultData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const { language } = useLanguage();
-  const language = "한국어"; // 전역상태변수 사용 불가로 인한 임시 상수 데이터
+  const { language } = useLanguage();
+  const location = useLocation();
+  const { selectedAnswers } = location.state || {};
 
   useEffect(() => {
     const fetchResultData = async () => {
       try {
-        const { data, error } = await supabase.from("results").select("*").eq("id", 1).single();
+        const resultId = 1; // 임시로 1로 설정, 실제로는 답변에 따라 계산되어야 함
+
+        const { data, error } = await supabase.from("results").select("*").eq("id", resultId).single();
         if (error) throw error;
         setResultData(data);
       } catch (error) {
@@ -29,7 +33,7 @@ const ResultPage = () => {
     };
 
     fetchResultData();
-  }, []);
+  }, [selectedAnswers]);
 
   if (loading) return <div>로딩 중...</div>;
   if (error) return <div>{error}</div>;
@@ -42,13 +46,12 @@ const ResultPage = () => {
     ? new URL(`../assets/Kami/${resultData.kami_image_name}.png`, import.meta.url).href
     : null;
 
-  const hashtags = resultData[`hashtag_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`]
-    ? resultData[`hashtag_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`].split(",")
-    : [];
-  const description = resultData[`description_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`];
+  const langSuffix = language === "한국어" ? "ko" : language === "English" ? "en" : "ja";
 
-  const resultName = resultData[`result_name_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`];
-  const kamiName = resultData[`kami_name_${language === "한국어" ? "ko" : language === "English" ? "en" : "ja"}`];
+  const hashtags = resultData[`hashtag_${langSuffix}`]?.split(",") || [];
+  const description = resultData[`description_${langSuffix}`];
+  const resultName = resultData[`result_name_${langSuffix}`];
+  const kamiName = resultData[`kami_name_${langSuffix}`];
 
   return (
     <ResultLayout>
