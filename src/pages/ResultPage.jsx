@@ -9,6 +9,15 @@ import colors from "../styles/color";
 import { useLanguage } from "../hooks/useLanguage";
 import { useLocation } from "react-router-dom";
 
+const answerCombinationToResult = {
+  "1,3,8": 2,
+  "1,3,8": 2,
+  "2,4,8": 3,
+  "2,4,8": 4,
+};
+
+const IGNORED_ANSWER_IDS = [5, 6, 7];
+
 const ResultPage = () => {
   const [resultData, setResultData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,10 +26,17 @@ const ResultPage = () => {
   const location = useLocation();
   const { selectedAnswers } = location.state || {};
 
+  const calculateResultId = (answers) => {
+    if (!answers || answers.length === 0) return 1;
+    const filteredAnswers = answers.filter((id) => !IGNORED_ANSWER_IDS.includes(id));
+    const key = [...filteredAnswers].sort((a, b) => a - b).join(",");
+    return answerCombinationToResult[key] || 1;
+  };
+
   useEffect(() => {
     const fetchResultData = async () => {
       try {
-        const resultId = 1; // 임시로 1로 설정, 실제로는 답변에 따라 계산되어야 함
+        const resultId = calculateResultId(selectedAnswers);
 
         const { data, error } = await supabase.from("results").select("*").eq("id", resultId).single();
         if (error) throw error;
