@@ -10,10 +10,22 @@ import { useLanguage } from "../hooks/useLanguage";
 import { useLocation } from "react-router-dom";
 
 const answerCombinationToResult = {
-  "1,3,8": 2,
-  "1,3,8": 2,
-  "2,4,8": 3,
-  "2,4,8": 4,
+  "1,3,8": 1,
+  "1,3,9": 9,
+  "1,3,10": 3,
+  "1,3,11": 7,
+  "1,4,8": 15,
+  "1,4,9": 13,
+  "1,4,10": 4,
+  "1,4,11": 8,
+  "2,3,8": 2,
+  "2,3,9": 20,
+  "2,3,10": 14,
+  "2,3,11": 17,
+  "2,4,8": 19,
+  "2,4,9": 21,
+  "2,4,10": 18,
+  "2,4,11": 16,
 };
 
 const IGNORED_ANSWER_IDS = [5, 6, 7];
