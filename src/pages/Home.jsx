@@ -25,12 +25,14 @@ function HomePage() {
 
   return (
     <Wrapper>
-      <Title>{texts[language].title}</Title>
-      <DropdownWrapper>
-        <Dropdown />
-      </DropdownWrapper>
-      <HomeImg src={home_img} />
-      <HomeButton language={language} text={texts[language].button} />
+      <ContentWrapper>
+        <Title>{texts[language].title}</Title>
+        <DropdownWrapper>
+          <Dropdown />
+        </DropdownWrapper>
+        <HomeImg src={home_img} />
+        <HomeButton language={language} text={texts[language].button} />
+      </ContentWrapper>
       <HomePattern src={home_pattern} />
     </Wrapper>
   );
@@ -42,7 +44,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
 `;
 
 const Title = styled.h1`
@@ -72,5 +73,9 @@ const HomeImg = styled.img`
 
 const HomePattern = styled.img`
   width: calc(100% + 40px);
-  margin: 30px -20px 0px -20px;
+  margin: 60px -20px -20px -20px;
+`;
+
+const ContentWrapper = styled.div`
+  margin-top: 10px;
 `;
