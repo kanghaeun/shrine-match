@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../supabase";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Flower from "../assets/title_flower.png";
 import Divider from "../components/common/results/Divider";
@@ -12,38 +11,23 @@ import ShrineMap from "../components/common/results/ShrineMap";
 
 const ResultPage = () => {
   const [resultData, setResultData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { language } = useLanguage();
   const location = useLocation();
-  const { selectedAnswers } = location.state || {};
+  const { preloadedResult } = location.state || {};
 
-  useEffect(() => {    
-    const fetchResultData = async () => {
-      try {
-        const resultId = 1; // 임시로 1로 설정, 실제로는 답변에 따라 계산되어야 함
+  useEffect(() => {
+    if (preloadedResult) {
+      setResultData(preloadedResult);
+    }
+  }, [preloadedResult]);
 
-        const { data, error } = await supabase.from("results").select("*").eq("id", resultId).single();
-        if (error) throw error;
-        setResultData(data);
-      } catch (error) {
-        setError("결과 데이터를 가져오는 데 실패했습니다.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (!resultData) return null;
 
-    fetchResultData();
-  }, [selectedAnswers]);
-
-  if (loading) return <div>로딩 중...</div>;
-  if (error) return <div>{error}</div>;
-
-  const shrineImageUrl = resultData.shrine_image_name
+  const shrineImageUrl = resultData?.shrine_image_name
     ? new URL(`../assets/Shrine/${resultData.shrine_image_name}.png`, import.meta.url).href
     : null;
 
-  const kamiImageUrl = resultData.kami_image_name
+  const kamiImageUrl = resultData?.kami_image_name
     ? new URL(`../assets/Kami/${resultData.kami_image_name}.png`, import.meta.url).href
     : null;
 
