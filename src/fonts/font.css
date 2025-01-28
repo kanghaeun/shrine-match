@@ -26,3 +26,9 @@
 body {
   font-family: "NanumMyeongjo";
 }
+
+@media (max-width: 768px) {
+  body {
+    font-family: "Pretendard", sans-serif;
+  }
+}
