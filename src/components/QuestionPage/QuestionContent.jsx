@@ -15,7 +15,7 @@ function QuestionContent({ questionNumber, totalQuestions, questionText }) {
 export default QuestionContent;
 
 const StyledQuestion = styled.div`
-  position: absolute;
+  position: relative;
   height: 0px;
   text-align: center;
   max-width: 80%;
