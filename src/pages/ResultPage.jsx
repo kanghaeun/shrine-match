@@ -32,7 +32,7 @@ const IGNORED_ANSWER_IDS = [5, 6, 7];
 
 const ResultPage = () => {
   const [resultData, setResultData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { language } = useLanguage();
   const location = useLocation();
@@ -50,44 +50,44 @@ const ResultPage = () => {
       try {
         const resultId = calculateResultId(selectedAnswers);
 
-        const { data, error } = await supabase
-          .from("results")
-          .select("*")
-          .eq("id", resultId)
-          .single();
+        const { data, error } = await supabase.from("results").select("*").eq("id", resultId).single();
+
         if (error) throw error;
         setResultData(data);
       } catch (error) {
         setError("결과 데이터를 가져오는 데 실패했습니다.");
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       }
     };
 
     fetchResultData();
   }, [selectedAnswers]);
 
-  if (loading) return <div>로딩 중...</div>;
+  if (isLoading) {
+    return (
+      <LoadingOverlay>
+        <LoadingImage src={new URL("../assets/loading.png", import.meta.url).href} alt="Loading" />
+        <LoadingText>성향과 상황에 맞는 신사를 추천해주고 있어요</LoadingText>
+      </LoadingOverlay>
+    );
+  }
+
   if (error) return <div>{error}</div>;
 
   const shrineImageUrl = resultData.shrine_image_name
-    ? new URL(
-        `../assets/Shrine/${resultData.shrine_image_name}.png`,
-        import.meta.url
-      ).href
+    ? new URL(`../assets/Shrine/${resultData.shrine_image_name}.png`, import.meta.url).href
     : null;
 
   const kamiImageUrl = resultData.kami_image_name
-    ? new URL(
-        `../assets/Kami/${resultData.kami_image_name}.png`,
-        import.meta.url
-      ).href
+    ? new URL(`../assets/Kami/${resultData.kami_image_name}.png`, import.meta.url).href
     : null;
 
   console.log("shrineImageUrl:", shrineImageUrl);
 
-  const langSuffix =
-    language === "한국어" ? "ko" : language === "English" ? "en" : "ja";
+  const langSuffix = language === "한국어" ? "ko" : language === "English" ? "en" : "ja";
 
   const hashtags = resultData[`hashtag_${langSuffix}`]?.split(",") || [];
   const description = resultData[`description_${langSuffix}`];
@@ -182,4 +182,57 @@ const DottedLine = styled.div`
   background-size: 15px 1.2px;
   background-repeat: repeat-x;
   margin-top: 35px;
+`;
+
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+const LoadingImage = styled.img`
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+`;
+
+const LoadingText = styled.div`
+  color: white;
+  font-size: 18px;
+  font-family: "Pretendard", sans-serif;
+  display: flex;
+  align-items: center;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    animation: dotAnimation 1.5s infinite;
+    margin-left: 4px;
+  }
+
+  @keyframes dotAnimation {
+    0% {
+      content: "";
+    }
+    25% {
+      content: ".";
+    }
+    50% {
+      content: ". .";
+    }
+    75% {
+      content: ". . .";
+    }
+    100% {
+      content: "";
+    }
+  }
 `;
