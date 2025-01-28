@@ -87,14 +87,19 @@ function QuestionPage() {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
-  const { questions, answers, currentQuestionIndex, selectedAnswers } = location.state || {};
+  const { questions, answers, currentQuestionIndex, selectedAnswers } =
+    location.state || {};
 
   const currentQuestion = questions?.[currentQuestionIndex];
-  const currentAnswers = answers?.filter((answer) => answer.question_id === currentQuestion?.id);
+  const currentAnswers = answers?.filter(
+    (answer) => answer.question_id === currentQuestion?.id
+  );
 
   const calculateResultId = (answers) => {
     if (!answers || answers.length === 0) return 1;
-    const filteredAnswers = answers.filter((id) => !IGNORED_ANSWER_IDS.includes(id));
+    const filteredAnswers = answers.filter(
+      (id) => !IGNORED_ANSWER_IDS.includes(id)
+    );
     const key = [...filteredAnswers].sort((a, b) => a - b).join(",");
     return answerCombinationToResult[key] || 1;
   };
@@ -102,7 +107,11 @@ function QuestionPage() {
   const fetchResultData = async (newSelectedAnswers) => {
     try {
       const resultId = calculateResultId(newSelectedAnswers);
-      const { data, error } = await supabase.from("results").select("*").eq("id", resultId).single();
+      const { data, error } = await supabase
+        .from("results")
+        .select("*")
+        .eq("id", resultId)
+        .single();
       if (error) throw error;
       return data;
     } catch (error) {
@@ -137,8 +146,12 @@ function QuestionPage() {
     }
   };
 
-  const questionColumn = `question_${language === "한국어" ? "ko" : language === "English" ? "en" : "jp"}`;
-  const answerColumn = `answer_${language === "한국어" ? "ko" : language === "English" ? "en" : "jp"}`;
+  const questionColumn = `question_${
+    language === "한국어" ? "ko" : language === "English" ? "en" : "jp"
+  }`;
+  const answerColumn = `answer_${
+    language === "한국어" ? "ko" : language === "English" ? "en" : "jp"
+  }`;
 
   if (!questions || !answers) {
     return <div>로딩 중...</div>;
@@ -163,7 +176,10 @@ function QuestionPage() {
       </ChoiceButtonsContainer>
       {isLoading && (
         <LoadingOverlay>
-          <LoadingImage src={new URL("../assets/loading.png", import.meta.url).href} alt="Loading" />
+          <LoadingImage
+            src={new URL("../assets/loading.png", import.meta.url).href}
+            alt="Loading"
+          />
           <LoadingText>성향과 상황에 맞는 신사를 추천해주고 있어요</LoadingText>
         </LoadingOverlay>
       )}
