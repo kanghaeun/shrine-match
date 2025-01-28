@@ -15,14 +15,14 @@ function QuestionContent({ questionNumber, totalQuestions, questionText }) {
 export default QuestionContent;
 
 const StyledQuestion = styled.div`
-  position: relative;
+  position: absolute;
   height: 0px;
   text-align: center;
-  max-width: 350px;
+  max-width: 80%;
   width: auto;
-  bottom: 415px;
+  top: 17%;
   z-index: 10;
-  font-size: 20px;
+  font-size: 1.1rem;
   font-weight: bold;
   font-family: "NanumMyeongjo", serif;
   line-height: 1.3;
