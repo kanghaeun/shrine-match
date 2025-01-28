@@ -8,6 +8,7 @@ import KeywordDetail from "../components/common/results/KeywordDetail";
 import colors from "../styles/color";
 import { useLanguage } from "../hooks/useLanguage";
 import { useLocation } from "react-router-dom";
+import ShrineMap from "../components/common/results/ShrineMap";
 
 const ResultPage = () => {
   const [resultData, setResultData] = useState(null);
@@ -17,7 +18,7 @@ const ResultPage = () => {
   const location = useLocation();
   const { selectedAnswers } = location.state || {};
 
-  useEffect(() => {
+  useEffect(() => {    
     const fetchResultData = async () => {
       try {
         const resultId = 1; // 임시로 1로 설정, 실제로는 답변에 따라 계산되어야 함
@@ -52,6 +53,7 @@ const ResultPage = () => {
   const description = resultData[`description_${langSuffix}`];
   const resultName = resultData[`result_name_${langSuffix}`];
   const kamiName = resultData[`kami_name_${langSuffix}`];
+  const shrineLocation = resultData[`result_name_${langSuffix}`];
 
   return (
     <ResultLayout>
@@ -70,6 +72,7 @@ const ResultPage = () => {
       <Divider theme="dark" />
       <KeywordDetail description={description} />
       <Divider theme="dark" />
+      <ShrineMap location={shrineLocation}/>
     </ResultLayout>
   );
 };
