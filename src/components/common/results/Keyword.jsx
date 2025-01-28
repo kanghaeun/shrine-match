@@ -32,5 +32,5 @@ const VerticalText = styled.div`
   text-orientation: upright;
   margin-top: 10px;
   letter-spacing: 1px;
-  font-size: 22px;
+  font-size: 1.375rem;
 `;
