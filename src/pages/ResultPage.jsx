@@ -7,6 +7,7 @@ import KeywordDetail from "../components/common/results/KeywordDetail";
 import colors from "../styles/color";
 import { useLanguage } from "../hooks/useLanguage";
 import { useLocation } from "react-router-dom";
+import ShrineMap from "../components/common/results/ShrineMap";
 
 const ResultPage = () => {
   const [resultData, setResultData] = useState(null);
@@ -32,10 +33,11 @@ const ResultPage = () => {
 
   const langSuffix = language === "한국어" ? "ko" : language === "English" ? "en" : "ja";
 
-  const hashtags = resultData?.[`hashtag_${langSuffix}`]?.split(",") || [];
-  const description = resultData?.[`description_${langSuffix}`];
-  const resultName = resultData?.[`result_name_${langSuffix}`];
-  const kamiName = resultData?.[`kami_name_${langSuffix}`];
+  const hashtags = resultData[`hashtag_${langSuffix}`]?.split(",") || [];
+  const description = resultData[`description_${langSuffix}`];
+  const resultName = resultData[`result_name_${langSuffix}`];
+  const kamiName = resultData[`kami_name_${langSuffix}`];
+  const shrineLocation = resultData[`result_name_${langSuffix}`];
 
   return (
     <ResultLayout>
@@ -54,6 +56,7 @@ const ResultPage = () => {
       <Divider theme="dark" />
       <KeywordDetail description={description} />
       <Divider theme="dark" />
+      <ShrineMap location={shrineLocation}/>
     </ResultLayout>
   );
 };
