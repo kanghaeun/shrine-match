@@ -2,7 +2,7 @@
   font-family: "Pretendard";
   font-display: fallback;
 
-  src: url("./Pretendard-SemiBold.woff") format("woff");
+  src: url("./Pretendard-SemiBold.otf") format("otf");
 
   font-weight: normal;
   font-style: normal;
@@ -11,9 +11,9 @@
 @font-face {
   font-family: "NanumMyeongjo";
   font-display: fallback;
-  src: url("./NanumMyeongjoBold.ttf") format("ttf"),
-    url("./NanumMyeongjoExtraBold.ttf") format("ttf"),
-    url("./NanumMyeongjo.ttf") format("ttf");
+  src: url("./NanumMyeongjoBold.otf") format("otf"),
+    url("./NanumMyeongjoExtraBold.otf") format("otf"),
+    url("./NanumMyeongjo.otf") format("otf");
 
   font-weight: normal;
   font-style: normal;
@@ -29,6 +29,6 @@ body {
 
 @media (max-width: 768px) {
   body {
-    font-family: "Pretendard", sans-serif;
+    font-family: "NanumMyeongjo", sans-serif;
   }
 }
