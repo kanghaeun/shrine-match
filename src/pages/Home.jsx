@@ -49,11 +49,11 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   position: relative;
   height: 0px;
-  top: 180px;
+  top: 22%;
   left: 51%;
   transform: translateX(-48%);
-  z-index: 100;
-  font-size: 36px;
+  z-index: 10;
+  font-size: 2rem;
   font-family: "NanumMyeongjo", serif;
   font-weight: 700;
   color: black;
@@ -78,4 +78,5 @@ const HomePattern = styled.img`
 
 const ContentWrapper = styled.div`
   margin-top: 10px;
+  justify-content: center;
 `;

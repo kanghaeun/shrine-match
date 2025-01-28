@@ -8,8 +8,12 @@ function HomeButton({ language, text }) {
 
   const fetchData = async () => {
     try {
-      const questionColumn = `question_${language === "한국어" ? "ko" : language === "English" ? "en" : "jp"}`;
-      const answerColumn = `answer_${language === "한국어" ? "ko" : language === "English" ? "en" : "jp"}`;
+      const questionColumn = `question_${
+        language === "한국어" ? "ko" : language === "English" ? "en" : "jp"
+      }`;
+      const answerColumn = `answer_${
+        language === "한국어" ? "ko" : language === "English" ? "en" : "jp"
+      }`;
 
       const { data: fetchedQuestions, error: questionError } = await supabase
         .from("questions")
@@ -45,4 +49,5 @@ export default HomeButton;
 
 const CustomButton = styled(Button)`
   font-size: 28px;
+  height: 70px;
 `;
