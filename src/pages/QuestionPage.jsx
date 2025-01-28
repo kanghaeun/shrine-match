@@ -82,6 +82,12 @@ const answerCombinationToResult = {
 
 const IGNORED_ANSWER_IDS = [5, 6, 7];
 
+const loadingMessages = {
+  한국어: "성향과 상황에 맞는 신사를 추천해주고 있어요",
+  English: "Recommending a shrine that matches your preferences and situation",
+  日本語: "あなたの性向と状況に合った紳士をお勧めしています",
+};
+
 function QuestionPage() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -159,12 +165,12 @@ function QuestionPage() {
 
   return (
     <QuestionLayout>
+      <BackgroundImg src={question_background} alt="Background" />
       <QuestionContent
         questionNumber={currentQuestionIndex + 1}
         totalQuestions={questions.length}
         questionText={currentQuestion[questionColumn]}
       />
-      <BackgroundImg src={question_background} alt="Background" />
       <ChoiceButtonsContainer>
         {currentAnswers.map((answer) => (
           <ChoiceButtons
@@ -180,7 +186,7 @@ function QuestionPage() {
             src={new URL("../assets/loading.png", import.meta.url).href}
             alt="Loading"
           />
-          <LoadingText>성향과 상황에 맞는 신사를 추천해주고 있어요</LoadingText>
+          <LoadingText>{loadingMessages[language]}</LoadingText>
         </LoadingOverlay>
       )}
     </QuestionLayout>
