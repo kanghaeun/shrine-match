@@ -37,7 +37,7 @@ const ResultPage = () => {
   const description = resultData[`description_${langSuffix}`];
   const resultName = resultData[`result_name_${langSuffix}`];
   const kamiName = resultData[`kami_name_${langSuffix}`];
-  const shrineLocation = resultData[`result_name_${langSuffix}`];
+  const shrineId = resultData.id;
 
   return (
     <ResultLayout>
@@ -56,7 +56,7 @@ const ResultPage = () => {
       <Divider theme="dark" />
       <KeywordDetail description={description} />
       <Divider theme="dark" />
-      <ShrineMap location={shrineLocation}/>
+      <ShrineMap shrineId={shrineId}/>
     </ResultLayout>
   );
 };
