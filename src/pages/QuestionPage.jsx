@@ -159,12 +159,12 @@ function QuestionPage() {
 
   return (
     <QuestionLayout>
-      <BackgroundImg src={question_background} alt="Background" />
       <QuestionContent
         questionNumber={currentQuestionIndex + 1}
         totalQuestions={questions.length}
         questionText={currentQuestion[questionColumn]}
       />
+      <BackgroundImg src={question_background} alt="Background" />
       <ChoiceButtonsContainer>
         {currentAnswers.map((answer) => (
           <ChoiceButtons
@@ -190,7 +190,6 @@ function QuestionPage() {
 export default QuestionPage;
 
 const QuestionLayout = styled.div`
-  height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
