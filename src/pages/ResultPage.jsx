@@ -50,7 +50,11 @@ const ResultPage = () => {
       try {
         const resultId = calculateResultId(selectedAnswers);
 
-        const { data, error } = await supabase.from("results").select("*").eq("id", resultId).single();
+        const { data, error } = await supabase
+          .from("results")
+          .select("*")
+          .eq("id", resultId)
+          .single();
         if (error) throw error;
         setResultData(data);
       } catch (error) {
@@ -67,14 +71,23 @@ const ResultPage = () => {
   if (error) return <div>{error}</div>;
 
   const shrineImageUrl = resultData.shrine_image_name
-    ? new URL(`../assets/Shrine/${resultData.shrine_image_name}.png`, import.meta.url).href
+    ? new URL(
+        `../assets/Shrine/${resultData.shrine_image_name}.png`,
+        import.meta.url
+      ).href
     : null;
 
   const kamiImageUrl = resultData.kami_image_name
-    ? new URL(`../assets/Kami/${resultData.kami_image_name}.png`, import.meta.url).href
+    ? new URL(
+        `../assets/Kami/${resultData.kami_image_name}.png`,
+        import.meta.url
+      ).href
     : null;
 
-  const langSuffix = language === "한국어" ? "ko" : language === "English" ? "en" : "ja";
+  console.log("shrineImageUrl:", shrineImageUrl);
+
+  const langSuffix =
+    language === "한국어" ? "ko" : language === "English" ? "en" : "ja";
 
   const hashtags = resultData[`hashtag_${langSuffix}`]?.split(",") || [];
   const description = resultData[`description_${langSuffix}`];
