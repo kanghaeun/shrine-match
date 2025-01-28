@@ -14,8 +14,8 @@ export default Button;
 const StyledButton = styled.button`
   border: none;
   border-radius: 15px;
-  width: 470px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
   padding: 15px 20px;
   font-family: "NanumMyeongjo", serif;
   background-color: ${colors.button};
