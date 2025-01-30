@@ -84,7 +84,7 @@ const answerCombinationToResult = {
 const IGNORED_ANSWER_IDS = [5, 6, 7];
 
 const loadingMessages = {
-  한국어: "성향과 상황에 맞는 신사를 추천해주고 있어요",
+  한국어: "당신에게 맞는 신사를 추천해주고 있어요",
   English: "Recommending a shrine that matches your preferences and situation",
   日本語: "あなたの性向と状況に合った紳士をお勧めしています",
 };
